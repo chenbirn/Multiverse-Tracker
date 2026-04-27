@@ -1,50 +1,95 @@
-מבנה הקוד:
-1. Jerry.c
-הקובץ מכיל את מימוש כל הפונקציות של מודול ג'רי (יצירה, הריסה וכו)
-כל פונקציות יצירת אובייקט יחזירו מצביע לאובייקט או יחזירו NULL למשתמש במידה ולא הצליחו להקצות מקום בזיכרון.
-2. Jerry.h
-הקובץ מכיל חתימות של פונקציות והגדרות ה structs אשר שייכות למודול של ג'רי
-יש לשים לב שהפונקציות יצירת אובייקט מוצא ויצירת תכונה פיזית אינן מוצהרות בקובץ הנ"ל אלא חשופות רק בקובץ ה-c. שאר הפונקציות מוצהרות בקובץ.
-3. Defs.h - מכיל את ההגדרות הכלליות בקוד (הגדרת status (success/failure) וbool (true/false).
-4. LinkedList.c
-הקובץ מכיל מימוש של ADT גנרי של רשימה מקושרת (struct שייך לקובץ ה-c, לא חשוף למשתמש)
-5. LinkedList.h
-הקובץ מכיל חתימות של פונקציות השייכות לרשימה מקושרת
-6. KeyValuePair.c
-הקובץ מכיל מימוש של ADT גנרי של משתנה מסוג KeyValuePair (struct שייך לקובץ ה-c, לא חשוף למשתמש)
-7. KeyValuePair.h
-הקובץ מכיל חתימות של פונקציות השייכות לKeyValuePair
-8. HashTable.c
-הקובץ מכיל מימוש של ADT גנרי של טבלת גיבוב העובדת בשיטת שרשור. טבלת הגיבוב היא למעשה מערך של רשימות מקושרות, הערך בכל חוליה ברשימה הוא משתנה מסוג KeyValuePair. (struct שייך לקובץ ה-c, לא חשוף למשתמש)
-9. HashTable.h
-הקובץ מכיל חתימות של פונקציות השייכות לטבלת הגיבוב
-10. MultiValueHashTable.c
-הקובץ מכיל מימוש של ADT גנרי של מולטי טבלת גיבוב. ייתכנו מפתחות זהים בטבלה ועל כן:
-מבנה הטבלה הוא טבלת גיבוב רגילה העובדת בשיטת שרשור, כאשר ערך כל חוליה ברשימה הוא משתנה מסוג KeyValuePair כמו בטבלת גיבוב רגילה. 
-הvalue של ערך החוליה תמיד יהיה רשימה מקושרת שתכיל את כל הערכים בעלי מפתח זהה.
-11. MultiValueHashTable.h
-הקובץ מכיל חתימות של פונקציות השייכות למולטי טבלת גיבוב
-12.JerryBoreeMain.c
-התכנית הראשית של הקוד.
-בתכנית הראשית נקלוט בעזרת קובץ קונפיגורציה כוכבים וג'רים.
-ניצור שני מבני נתונים:
-א. רשימה מקושרת בה נשמור את כל הג'רים
-ב. מולטי טבלת גיבוב בה המפתח היא שם של תכונה פיזית והערכים הם ג'רים
-הסבר על כלל הפונקציות בקובץ זה:
-destroy_PlanetsArr- הריסת מערך כוכבים
-CopyJerry- פונקציית העתקה רדודה עבור משתנה מסוג ג'רי
-FreeJerry- פונקציית שחרור למשתנה מסוג ג'רי
-FreeShallowJerry- פונקציית שחרור למשתנה מסוג העתקה רדודה של ג'רי- רלוונטי לטבלת המולטי האש- שם לא נרצה בהכרח לשחרר את ג'רי מפני שמשתייך לתכונות נוספות.
-PrintJerry- פונקציית הדפסה עבור משתנה מסוג ג'רי
-PartJerry- פונקצייה המקבלת אלמנט מסויים וג'רי ובודקת האם האלמנט שייך לג'רי. (כמו למשל ID או כוכב)
-TransformPCNameToNumber- פונקצייה שמקבלת שם של תכונה והופכת אותו למספר לטובת חישוב פונקציית גיבוב. הפונקצייה לוקחת את האות הראשונה של שם התכונה וממירה אותה לascii.
-CopyPCName- פונקציית העתקה עמוקה עבור שם של תכונה
-FreePCName- פונקציית שחרור עבור שם של תכונה
-PrintPCName- פונקציית הדפסה עבור שם של תכונה
-EqualPCName- פונקצייה הבודקת אם שני שמות של תכונה זהים
-checkInput- פונקציה הבודקת אם בתפריט הקלט מהמשתמש תקין (מספר בין 1 ל-9)
-MemoryProblem- פונקצייה שתופעל בעת בעיית זיכרון, תשחרר באופן מסודר ככל הניתן את הזיכרון שהוקצה במהלך התכנית ותצא מהתכנית.
-read_configuration- פונקציית קריאת קובץ קונפיגורציה. הפונקציה קוראת את הקובץ ומכניסה את הנתונים המתאימים למבני הנתונים.
-userChoice1-9: פונקציות שמופעלות בהתאם לקלט המשתמש בתפריט.
-main: פונקצייה ראשית.
+# Multiverse Tracker (JerryBoree)
 
+A C-based system for managing and tracking "Jerry" entities across different planets, using custom-built generic data structures.
+
+This project was developed as part of an Advanced Programming course and focuses on memory management, modular design, and generic Abstract Data Types (ADTs).
+
+---
+
+## 📌 Overview
+
+The system reads data from a configuration file and manages a collection of "Jerries" (entities) and their associated physical characteristics.
+
+Two main data structures are used:
+- A linked list to store all Jerry objects
+- A multi-value hash table that maps physical characteristics to Jerries
+
+---
+
+## 🏗️ Project Structure
+
+### 🔹 Core Modules
+
+#### Jerry Module
+- `Jerry.c` – Implementation of all Jerry-related functions (creation, destruction, etc.)
+- `Jerry.h` – Declarations of structs and public functions
+
+> Note: Some internal helper functions are intentionally hidden and not exposed in the header file.
+
+---
+
+#### Generic Data Structures
+
+##### Linked List
+- `LinkedList.c` – Implementation of a generic linked list ADT
+- `LinkedList.h` – Function declarations
+
+##### Key-Value Pair
+- `KeyValuePair.c` – Generic key-value pair implementation
+- `KeyValuePair.h` – Function declarations
+
+##### Hash Table
+- `HashTable.c` – Generic hash table using chaining (array of linked lists)
+- `HashTable.h` – Function declarations
+
+##### Multi-Value Hash Table
+- `MultiValueHashTable.c` – Extension of hash table allowing multiple values per key
+- `MultiValueHashTable.h` – Function declarations
+
+> Each key maps to a linked list of values.
+
+---
+
+#### Utilities
+- `Defs.h` – General definitions (`bool`, `status`, etc.)
+
+---
+
+## 🚀 Main Program
+
+### `JerryBoreeMain.c`
+
+Responsible for:
+- Reading input from a configuration file
+- Initializing data structures
+- Managing user interaction through a CLI menu
+
+### Key Functionalities:
+- Memory-safe creation and destruction of objects
+- Shallow and deep copy handling
+- Hashing based on physical characteristic names
+- Input validation
+- Error handling (especially memory allocation failures)
+
+---
+
+## 🧠 Key Functions
+
+- `CopyJerry` – Shallow copy of a Jerry object  
+- `FreeJerry` / `FreeShallowJerry` – Memory management  
+- `PrintJerry` – Output representation  
+- `TransformPCNameToNumber` – Hash function helper  
+- `EqualPCName` – Key comparison  
+- `read_configuration` – File parsing and initialization  
+- `MemoryProblem` – Graceful handling of memory failures  
+
+---
+
+## 🛠️ Technologies & Concepts
+
+- C Programming
+- Manual Memory Management
+- Abstract Data Types (ADT)
+- Generic Programming using function pointers
+- Hash Tables with Chaining
+- Multi-value indexing
