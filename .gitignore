@@ -1,0 +1,27 @@
+# IDE
+.idea/
+.vscode/
+
+# Build folders
+cmake-build-debug/
+cmake-build-release/
+build/
+
+# Compiled files
+*.o
+*.exe
+*.out
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test output files
+only_output
+inputAndOutputToCompare
+
+*.pdf
+JerryBoree
+only_input.txt
+only_output.txt
+inputAndOutputToCompare.txt
